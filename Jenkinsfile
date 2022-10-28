@@ -18,15 +18,15 @@ pipeline {
         stage('Pravljenje docker image') {
             steps {
                 script{
-                   dockerImage =sh 'docker build registry .'
+//                  dockerImage =sh 'docker build registry .'
                 }
             }
         }
         stage('Pushovanje na dockerHub') {
             steps {
                 script{
-                    docker.withRegistry('',korImeLozinka){
-                    dockerImage.push()
+    //              docker.withRegistry('',korImeLozinka){
+    //               dockerImage.push()
                 }
                 
                 }
