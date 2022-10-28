@@ -19,7 +19,7 @@ pipeline {
         stage('Pravljenje docker image') {
             steps {
                 script{
-                    dockerImage = sh 'docker build  -t /target/maven-hello-world-0.2.0.jar'
+                    dockerImage = sh 'docker build  -t pavleche/maven-project .'
                 }
             }
         }
