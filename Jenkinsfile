@@ -19,7 +19,7 @@ pipeline {
         stage('Pravljenje docker image') {
             steps {
                 script{
-                    dockerImage = sh 'sudo docker build  -t pavleche/maven-project.'
+                    dockerImage = sh 'docker. build  -t pavleche/maven-project'
                 }
             }
         }
