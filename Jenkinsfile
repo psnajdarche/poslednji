@@ -2,11 +2,10 @@ pipeline {
     agent any
     
     environment{
+        registry = "pavleche/maven-project"
         dockerImage = ''
         korImeILozinka = "dockerKorImeILozinka"
     }
-
-
 
    stages {
         stage('Checkout gita') {
@@ -19,7 +18,7 @@ pipeline {
         stage('Pravljenje docker image') {
             steps {
                 script{
-                   dockerImage =sh' docker. build  -t pavleche/maven-project '
+                   dockerImage =sh' docker.build registry
                 }
             }
         }
