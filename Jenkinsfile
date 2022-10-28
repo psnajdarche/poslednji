@@ -11,7 +11,7 @@ pipeline {
    stages {
         stage('Checkout gita') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'b4ba09f8-bba3-407b-a3d6-a9b7e36e2354', url: 'https://github.com/StevaRmnk/MavenRepository']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/psnajdarche/poslednji.git/']]])
                 sh 'mvn -D maven.test.failure.ignore=true clean package'
                 
             }
