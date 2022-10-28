@@ -2,21 +2,16 @@ pipeline{
     agent any
 
     tools {
-         maven 'maven'
+         maven 'mvn'
          jdk 'java'
     }
 
     stages{
-//         stage('checkout'){
-//             steps{
-// //                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: '', url: '']]])
-//             }
-//         }
-//         stage('build'){
-//             steps{
-//                bat 'mvn package'
-//             }
-//         }
+        
+         stage('build'){
+             steps{
+                 sh'  mvn -B -DskipTests clean package'
+             }         }
         //just to test webhook 3
     }
 }
