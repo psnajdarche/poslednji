@@ -19,7 +19,7 @@ pipeline {
         stage('Pravljenje docker image') {
             steps {
                 script{
-                    dockerImage = sh 'docker build -t stevarmnk/my-app-1.0 .'
+                    dockerImage = sh 'docker build -t pavleche/maven-project'
                 }
             }
         }
