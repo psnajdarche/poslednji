@@ -32,27 +32,8 @@ pipeline {
                 }
                 
             }
-             stage('Hello') {
-            steps {
-                echo 'Push1'
-            }
-        }
-        stage("Parsiranje odgovora"){
-            steps{
-                echo 'Ovaj pull je ' + env.repo
-            }
-        }
-        stage("Pokretanje drugog posla"){
-            
-            steps{
-                script{
-                    if(env.repo=="closed"){
-                    build job:"PokrenutOdStraneDrugog"
-                    }else{
-                        echo "Job nije pokrenut"
-                    }
-                }
-        }
+         
+        
     }
     
 }
