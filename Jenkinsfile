@@ -5,7 +5,7 @@ pipeline {
         registry = "pavleche/maven-project"
         dockerImage = ''
         korImeILozinka = "dockerKorImeILozinka"
-        comm = readJSON text: "$zen"
+        comm = readJSON text: "$ref"
         msg=readJSON text:"$X_GitHub_Event"
         
     }
