@@ -18,7 +18,7 @@ pipeline {
         stage('Pravljenje docker image') {
             steps {
                 script{
-                  dockerImage =sh 'docker build registry '
+                  dockerImage =sh 'docker build registry /poslednji/Dockerfile '
                 }
             }
         }
