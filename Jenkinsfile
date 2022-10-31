@@ -9,10 +9,7 @@ pipeline {
         msg=readJSON text:"$X_GitHub_Event"
         
     }
-     parameters {
-        string(name: 'COMMENT', defaultValue: 'test-params', description: 'desc')
-        string(name: 'BRANCH', defaultValue: 'main', description: 'desc')
-    }
+     
 
 
    stages {
