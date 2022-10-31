@@ -6,6 +6,11 @@ pipeline {
         dockerImage = ''
         korImeILozinka = "dockerKorImeILozinka"
     }
+     parameters {
+        string(name: 'COMMENT', defaultValue: 'test-params', description: 'desc')
+        string(name: 'BRANCH', defaultValue: 'master', description: 'desc')
+    }
+
 
    stages {
         stage('Checkout gita') {
@@ -15,49 +20,28 @@ pipeline {
                 
             }
         }
-        stage('Pravljenje docker image') {
+      
+        stage('triger build') {
             steps {
-                script{
-                  dockerImage =sh 'docker build registry /poslednji/Dockerfile '
-                }
-            }
-        }
-        stage('Pushovanje na dockerHub') {
-            steps {
-                script{
-                  docker.withRegistry('',korImeLozinka){
-                  dockerImage.push()
-                }
-                
-                }
-                
-            }
-         
-        
-    }
-        stage('Hello') {
-            steps {
-                echo 'Push1'
-            }
-        }
-        stage("Parsiranje odgovora"){
-            steps{
-                echo 'Ovaj pull je ' + env.repo
-            }
-        }
-        stage("Pokretanje drugog posla"){
-            
-            steps{
-                script{
-                    if(env.repo=="closed"){
-                    build job:"PokrenutOdStraneDrugog"
-                    }else{
-                        echo "Job nije pokrenut"
+                script {
+                    def comm = readJSON text: "$commits"
+                    echo comm.toString()
+                   
+                    def msg = "$comm_message"
+                    echo msg
+                    jobs.each {
+                        echo it
+                        if (msg.contains(it)) {
+                            echo 'contains'
+                            build job: it, parameters: [[$class: 'StringParameterValue', name: 'BRANCH', value: "${params.BRANCH}"],
+                            [$class: 'StringParameterValue', name: 'REF', value: "$ref"]]
+                        }
                     }
+
                 }
-                
+
             }
-            
         }
+       
    }
 }
