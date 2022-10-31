@@ -5,6 +5,7 @@ pipeline {
         registry = "pavleche/maven-project"
         dockerImage = ''
         korImeILozinka = "dockerKorImeILozinka"
+        jobs = getJobs()
     }
      parameters {
         string(name: 'COMMENT', defaultValue: 'test-params', description: 'desc')
