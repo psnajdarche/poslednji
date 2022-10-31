@@ -36,8 +36,8 @@ pipeline {
 
                 }
             }
-        }
-    }
+       
+    
         
            stage("Parsiranje odgovora"){
             steps{  
@@ -62,5 +62,6 @@ pipeline {
             }
             
         } 
-  }
+    }
+  }     
 
