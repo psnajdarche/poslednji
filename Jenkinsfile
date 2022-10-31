@@ -45,4 +45,6 @@ pipeline {
         }
        
    }
+}def getJobs() {
+    return ['test-params']
 }
