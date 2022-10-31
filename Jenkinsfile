@@ -9,7 +9,7 @@ pipeline {
     }
      parameters {
         string(name: 'COMMENT', defaultValue: 'test-params', description: 'desc')
-        string(name: 'BRANCH', defaultValue: 'master', description: 'desc')
+        string(name: 'BRANCH', defaultValue: 'main', description: 'desc')
     }
 
 
