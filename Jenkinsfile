@@ -25,14 +25,13 @@ pipeline {
         stage('triger build') {
             steps {
                 script {
-                    def comm = readJSON text: "$commits"
+                    def comm = readJSON text: "$hook_id"
                     echo comm.toString()
                    
-                    def msg = "$comm_message"
-                    echo msg
+                   
                     jobs.each {
                         echo it
-                        if (msg.contains(it)) {
+                        if (comm.contains(it)) {
                             echo 'contains'
                             build job: it, parameters: [[$class: 'StringParameterValue', name: 'BRANCH', value: "${params.BRANCH}"],
                             [$class: 'StringParameterValue', name: 'REF', value: "$ref"]]
