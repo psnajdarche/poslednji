@@ -21,27 +21,26 @@ pipeline {
                 
             }
         }
-      
-        stage('triger build') {
-            steps {
-                script {
-                    def comm = readJSON text: "$hook_id"
+           stage("Parsiranje odgovora"){
+            steps{  
+                    def comm = readJSON text: "$zen"
                     echo comm.toString()
-                   
-                   
-                    jobs.each {
-                        echo it
-                        if (comm.contains(it)) {
-                            echo 'contains'
-                            build job: it, parameters: [[$class: 'StringParameterValue', name: 'BRANCH', value: "${params.BRANCH}"],
-                            [$class: 'StringParameterValue', name: 'REF', value: "$ref"]]
-                        }
-                    }
-
-                }
-
+                    echo 'Ovaj pull je ' + comm
             }
         }
-       
+        stage("Pokretanje drugog posla"){
+            
+            steps{
+                script{
+                    if(comm=="closed"){
+                    build job:"PokrenutOdStraneDrugog"
+                    }else{
+                        echo "Job nije pokrenut"
+                    }
+                }
+                
+            }
+            
+        } 
    }
 }
