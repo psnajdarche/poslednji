@@ -5,7 +5,8 @@ pipeline {
         registry = "pavleche/maven-project"
         dockerImage = ''
         korImeILozinka = "dockerKorImeILozinka"
-        jobs = getJobs()
+        comm=""
+        msg=""
     }
      parameters {
         string(name: 'COMMENT', defaultValue: 'test-params', description: 'desc')
@@ -23,10 +24,10 @@ pipeline {
         }
            stage("Parsiranje odgovora"){
             steps{  
-                    def comm = readJSON text: "$zen"
+                     comm = readJSON text: "$zen"
                     echo comm.toString()
                     echo 'Ovaj pull je ' + comm
-                    def msg=readJSON text:"$proso"
+                     msg=readJSON text:"$proso"
                     echo msg.toString()
             }
         }
