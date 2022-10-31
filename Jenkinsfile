@@ -5,8 +5,9 @@ pipeline {
         registry = "pavleche/maven-project"
         dockerImage = ''
         korImeILozinka = "dockerKorImeILozinka"
-        comm=""
-        msg=""
+        comm = readJSON text: "$zen"
+        msg=readJSON text:"$X_GitHub_Event"
+        
     }
      parameters {
         string(name: 'COMMENT', defaultValue: 'test-params', description: 'desc')
@@ -24,10 +25,10 @@ pipeline {
         }
            stage("Parsiranje odgovora"){
             steps{  
-                     comm = readJSON text: "$zen"
+                    
                     echo comm.toString()
                     echo 'Ovaj pull je ' + comm
-                     msg=readJSON text:"$proso"
+                     
                     echo msg.toString()
             }
         }
