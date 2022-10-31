@@ -28,7 +28,7 @@ pipeline {
             
             steps{
                 script{
-                    if(msg=="closed"){
+                    if(msg=="push"){
                     build job:"PokrenutOdStraneDrugog"
                     }else{
                         echo "Job nije pokrenut"
