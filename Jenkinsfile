@@ -26,13 +26,14 @@ pipeline {
                     def comm = readJSON text: "$zen"
                     echo comm.toString()
                     echo 'Ovaj pull je ' + comm
+                    def msg=readJSON text:"$proso"
             }
         }
         stage("Pokretanje drugog posla"){
             
             steps{
                 script{
-                    if(comm=="closed"){
+                    if(msg=="ping"){
                     build job:"PokrenutOdStraneDrugog"
                     }else{
                         echo "Job nije pokrenut"
