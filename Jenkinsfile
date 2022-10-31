@@ -27,6 +27,7 @@ pipeline {
                     echo comm.toString()
                     echo 'Ovaj pull je ' + comm
                     def msg=readJSON text:"$proso"
+                    echo msg.toString()
             }
         }
         stage("Pokretanje drugog posla"){
