@@ -26,7 +26,7 @@ pipeline {
                steps{ 
                    script{ 
                     def  para= readJSON text: "$ref"
-                    def ev=readJSON text:["$x_github_event"]
+                    def ev=readJSON text:["$X_GitHub_Event"]
                     echo para.toString()
                     echo ev.toString()
                    
