@@ -5,7 +5,7 @@ pipeline {
         registry = "pavleche/maven-project"
         dockerImage = ''
         korImeILozinka = "dockerKorImeILozinka"
-        comm= readJSON text: "$ref"
+       
         
     }
    
