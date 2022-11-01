@@ -25,7 +25,10 @@ pipeline {
        stage("Parsiranje odgovora"){
                steps{ 
                    script{ 
-                    
+                    def  comm= readJSON text: "$ref"
+                    def msg=readJSON text:["$X_GitHub_Event"]
+                    echo comm.toString()
+                    echo msg.toString()
                    
                     echo comm.toString()
                     echo 'Ovaj pull je ' + comm
