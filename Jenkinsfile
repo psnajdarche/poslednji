@@ -20,7 +20,7 @@ pipeline {
                 sh 'mvn -D maven.test.failure.ignore=true clean package'
                 
             }
-       
+        }
            stage("Parsiranje odgovora"){
                steps{ 
                    script{ 
