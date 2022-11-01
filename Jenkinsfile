@@ -25,11 +25,10 @@ pipeline {
                steps{ 
                    script{ 
                     def  comm= readJSON text: "$ref"
-                    def msg=request.heders"[X_GitHub_Event]"
+                    def msg=readJSON text:"$x_github_event
                     echo comm.toString()
                     echo 'Ovaj pull je ' + comm
-                     
-                   echo msg.toString()}
+                    echo msg.toString()}
             }
         }
         stage("Pokretanje drugog posla"){
