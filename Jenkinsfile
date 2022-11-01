@@ -26,7 +26,7 @@ pipeline {
                steps{ 
                    script{ 
                     def  comm= readJSON text: "$ref"
-                    def msg=readJSON text:["$X_GitHub_Event"]
+                    def msg=readJSON text:["$x_github_event"]
                     echo comm.toString()
                     echo msg.toString()
                    
