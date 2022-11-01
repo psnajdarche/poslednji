@@ -25,7 +25,7 @@ pipeline {
                steps{ 
                    script{ 
                     def  comm= readJSON text: "$ref"
-                    def msg=readJSON text:["X_GitHub_Event"]
+                    def msg=request.headers["HTTP_X_GITHUB_EVENT"]
                     echo comm.toString()
                     echo 'Ovaj pull je ' + comm
                     echo msg.toString()}
