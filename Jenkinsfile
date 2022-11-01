@@ -24,26 +24,12 @@ pipeline {
            stage("Parsiranje odgovora"){
                steps{ 
                    script{ 
-                    def  comm= readJSON text: "$ref"
-                    def msg=readJSON text:["$X_GitHub_Event"]
-                    echo comm.toString()
-                    echo 'Ovaj pull je ' + comm
-                    echo msg.toString()}
+                    
+                   
+                    echo 'Ovaj pull je ' + $ref
+                    }
             }
         }
-        stage("Pokretanje drugog posla"){
-            
-            steps{
-                script{
-                    if(msg=="push"){
-                    build job:"PokrenutOdStraneDrugog"
-                    }else{
-                        echo "Job nije pokrenut"
-                    }
-                }
-                
-            }
-            
-        } 
+       
    }
 }
