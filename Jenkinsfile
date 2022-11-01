@@ -25,8 +25,9 @@ pipeline {
                steps{ 
                    script{ 
                     
-                   
-                    echo 'Ovaj pull je ' + $ref
+                   def  comm= readJSON text: "$ref"
+                    echo comm.toString()
+                    echo 'Ovaj pull je ' + comm
                     }
             }
         }
