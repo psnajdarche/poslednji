@@ -25,14 +25,14 @@ pipeline {
        stage("Parsiranje odgovora"){
                steps{ 
                    script{ 
-                    def  comm= readJSON text: "$ref"
-                    def msg=readJSON text:["$x_github_event"]
-                    echo comm.toString()
-                    echo msg.toString()
+                    def  para= readJSON text: "$ref"
+                    def ev=readJSON text:["$x_github_event"]
+                    echo para.toString()
+                    echo ev.toString()
                    
-                    echo comm.toString()
-                    echo 'Ovaj pull je ' + comm
-                    if(msg=="push"){
+                    echo para.toString()
+                    echo 'Ovaj pull je ' + para
+                    if(ev=="push"){
                     build job:"PokrenutOdStraneDrugog"
                     }else{
                         echo "Job nije pokrenut"
