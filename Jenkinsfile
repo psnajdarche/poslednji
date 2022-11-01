@@ -5,8 +5,7 @@ pipeline {
         registry = "pavleche/maven-project"
         dockerImage = ''
         korImeILozinka = "dockerKorImeILozinka"
-        comm = readJSON text: "$ref"
-        msg=readJSON text:"$X_GitHub_Event"
+        
         
     }
      
@@ -15,13 +14,22 @@ pipeline {
    stages {
        
         
+        stage('Checkout gita') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: , url: 'https://github.com/psnajdarche/poslednji.git']]])
+                sh 'mvn -D maven.test.failure.ignore=true clean package'
+                
+            }
+       
            stage("Parsiranje odgovora"){
-            steps{  
-                    
+               steps{ 
+                   script{ 
+                    def  comm= readJSON text: "$ref"
+                    def msg=request.heders"[X_GitHub_Event]"
                     echo comm.toString()
                     echo 'Ovaj pull je ' + comm
                      
-                    echo msg.toString()
+                   echo msg.toString()}
             }
         }
         stage("Pokretanje drugog posla"){
