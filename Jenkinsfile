@@ -5,7 +5,7 @@ pipeline {
         registry = "pavleche/maven-project"
         dockerImage = ''
         korImeILozinka = "dockerKorImeILozinka"
-        
+        comm= readJSON text: "$ref"
         
     }
      
@@ -25,7 +25,7 @@ pipeline {
                steps{ 
                    script{ 
                     
-                   def  comm= readJSON text: "$ref"
+                   
                     echo comm.toString()
                     echo 'Ovaj pull je ' + comm
                     }
